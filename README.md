@@ -1,4 +1,4 @@
-pebble-compass
-==============
+Compass for Pebble
+==================
 
-A simple compass application for the Pebble Smartwatch
+A simple compass watchapp for the Pebble Smartwatch
