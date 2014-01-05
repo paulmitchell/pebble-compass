@@ -1,0 +1,27 @@
+Phase 1
+~~~~~~~
+Show a compass circle (with N, S, E, W)
+Two labels in the center:
+1. Direction (SE)
+2. Degrees
+
+Phase 2
+~~~~~~~
+Add the Javascript to figure out heading
+
+Phase 3 (optional)
+~~~~~~~~~~~~~~~~~~
+Allow colors to be switched
+
+Phase 4
+~~~~~~~
+Add mark location functionality
+Show direction and distance to marked location
+
+Phase 5
+~~~~~~~
+Allow the user to set the distance scale (Metric or Imperial)
+
+Phase 6
+~~~~~~~
+Allow the user to set the marked location in the settings app

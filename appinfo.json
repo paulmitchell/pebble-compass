@@ -1,0 +1,25 @@
+{
+  "uuid": "1e7cc984-1b17-4fc6-93b0-0e3f1ca6d66b",
+  "shortName": "Compass",
+  "longName": "Compass",
+  "companyName": "Paul Mitchell",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "capabilities": [ "location" ],
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "heading": 0
+  },
+  "resources": {
+    "media": [
+      {
+        "menuIcon": true,
+        "type": "png",
+        "name": "IMAGE_MENU_ICON",
+        "file": "images/menu_icon.png"
+      }
+    ]
+  }
+}
