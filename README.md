@@ -3,7 +3,7 @@ Compass for Pebble
 
 A simple compass watchapp for the Pebble Smartwatch
 
-![Screenshot](https://raw.github.com/paulmitchell/pebble-compass/master/sccreenshots/pebble-screenshot_2014-01-05_13-39-25.png)
+![Screenshot](https://raw.github.com/paulmitchell/pebble-compass/master/screenshots/pebble-screenshot_2014-01-05_13-39-25.png)
 
 License
 -------
