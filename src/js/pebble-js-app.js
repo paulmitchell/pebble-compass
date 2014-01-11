@@ -14,28 +14,28 @@
  * limitations under the License.
  */
 
-var oldHeading = -1;
+var oldHeading = Number.NaN;
 
 function locationSuccess(position) {
-  console.log('Location success: ' + JSON.stringify(position));
+  // console.log('Location success: ' + JSON.stringify(position));
   var newHeading = Math.round(position.coords.heading);
   if (newHeading != oldHeading) {
     console.log('Heading updated: ' + newHeading);
-    Pebble.sendAppMessage({ 'heading': newHeading });
+    Pebble.sendAppMessage({ 'heading': (newHeading == -1) ? -5 : newHeading });
     oldHeading = newHeading;
   }
 }
 
 function locationError(err) {
   console.log('Location error (' + err.code + '): ' + err.message);
-  Pebble.showSimpleNotificationOnPebble('Compass', 'Error (' + err.code + '): ' + err.message);
+  Pebble.sendAppMessage({ 'heading': -err.code });
+  oldHeading = Number.NaN;
 }
 
 var locationOptions = {
-  'enableHighAccuracy': true
+  'enableHighAccuracy': true,
+  'timeout': 15000
 };
-
-console.log('Compass started');
 
 Pebble.addEventListener('ready',
   function(e) {
