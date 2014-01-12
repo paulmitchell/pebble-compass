@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+var STATUS_SUCCESS = 0
+var STATUS_NOT_MOVING = -1
+var STATUS_WAITING = -2
+var STATUS_PERMISSION_DENIED = -3
+var STATUS_POSITION_UNAVAILABLE = -4
+var STATUS_TIMEOUT = -5
+
 var oldHeading = Number.NaN;
 
 function locationSuccess(position) {
@@ -21,14 +28,26 @@ function locationSuccess(position) {
   var newHeading = Math.round(position.coords.heading);
   if (newHeading != oldHeading) {
     console.log('Heading updated: ' + newHeading);
-    Pebble.sendAppMessage({ 'heading': (newHeading == -1) ? -5 : newHeading });
+    Pebble.sendAppMessage({ 'heading': newHeading });
     oldHeading = newHeading;
   }
 }
 
 function locationError(err) {
   console.log('Location error (' + err.code + '): ' + err.message);
-  Pebble.sendAppMessage({ 'heading': -err.code });
+  var status = STATUS_SUCCESS;
+  switch (err.code) {
+  case err.PERMISSION_DENIED:
+    status = STATUS_PERMISSION_DENIED;
+    break;
+  case err.POSITION_UNAVAILABLE:
+    status = STATUS_POSITION_UNAVAILABLE;
+    break;
+  case err.TIMEOUT:
+    status = STATUS_TIMEOUT;
+    break;
+  }
+  Pebble.sendAppMessage({ 'heading': status });
   oldHeading = Number.NaN;
 }
 

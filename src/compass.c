@@ -24,11 +24,11 @@
 #define SQUARE_RADIUS 15
 
 #define STATUS_SUCCESS 0
-#define STATUS_PERMISSION_DENIED 1
-#define STATUS_POSITION_UNAVAILABLE 2
-#define STATUS_TIMEOUT 3
-#define STATUS_WAITING 4
-#define STATUS_NOT_MOVING 5
+#define STATUS_NOT_MOVING -1
+#define STATUS_WAITING -2
+#define STATUS_PERMISSION_DENIED -3
+#define STATUS_POSITION_UNAVAILABLE -4
+#define STATUS_TIMEOUT -5
 
 Window *window;
 Layer *window_layer;
@@ -43,7 +43,7 @@ char heading_angle_buffer[8];
 int16_t heading_angle = 0;
 
 TextLayer *status_layer;
-uint8_t status = STATUS_WAITING;
+int8_t status = STATUS_WAITING;
 
 AppSync sync;
 uint8_t sync_buffer[32];
@@ -166,7 +166,7 @@ static void sync_tuple_changed_callback(const uint32_t key, const Tuple* new_tup
       if (value < 0) {
         APP_LOG(APP_LOG_LEVEL_DEBUG, "Error: %d", value);
         heading_angle = 0;
-        status = -value;
+        status = value;
       } else {
         APP_LOG(APP_LOG_LEVEL_DEBUG, "Heading: %d", value);
         heading_angle = value;
@@ -220,7 +220,7 @@ static void window_load(Window *window) {
   layer_add_child(window_layer, text_layer_get_layer(status_layer));
 
   Tuplet initial_values[] = {
-    TupletInteger(LOCATION_HEADING_KEY, (int16_t) -STATUS_WAITING),
+    TupletInteger(LOCATION_HEADING_KEY, (int16_t) STATUS_WAITING),
   };
 
   app_sync_init(&sync, sync_buffer, sizeof(sync_buffer), initial_values, ARRAY_LENGTH(initial_values),
