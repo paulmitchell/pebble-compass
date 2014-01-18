@@ -124,8 +124,12 @@ static void heading_update_proc(Layer *layer, GContext *ctx) {
       text_layer_set_text(heading_text_label, "");
       text_layer_set_text(heading_angle_label, "");
       break;
-    case STATUS_WAITING:
     case STATUS_NOT_MOVING:
+      text_layer_set_text(status_layer, "Not\nMoving");
+      text_layer_set_text(heading_text_label, "");
+      text_layer_set_text(heading_angle_label, "");
+      break;
+    case STATUS_WAITING:
       text_layer_set_text(status_layer, "Waiting for\nHeading");
       text_layer_set_text(heading_text_label, "");
       text_layer_set_text(heading_angle_label, "");

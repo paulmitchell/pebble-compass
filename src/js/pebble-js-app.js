@@ -53,7 +53,7 @@ function locationError(err) {
 
 var locationOptions = {
   'enableHighAccuracy': true,
-  'timeout': 15000
+  'timeout': 120000
 };
 
 Pebble.addEventListener('ready',
